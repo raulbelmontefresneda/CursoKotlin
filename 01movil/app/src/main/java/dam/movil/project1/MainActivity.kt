@@ -7,8 +7,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dam.movil.project1.databinding.ActivityMainBinding
 
+private const val TEXT_VIEW = "text_view"
+
 // ":"  indica que MainActivity extiende a AppCompactActivity
 class MainActivity : AppCompatActivity() {
+
+
+
 
     //hay que incluir el binding en el gradle de la app
     private val binding : ActivityMainBinding by lazy {
@@ -33,7 +38,29 @@ class MainActivity : AppCompatActivity() {
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
                 insets
             }
+
+
+            savedInstanceState?.let {
+                text1.text = savedInstanceState.getString(TEXT_VIEW)
+            }
+
+
+            buttonSumar.setOnClickListener {
+                val value = text1.text.toString().toInt()
+                text1.text = (value + 1).toString()
+            }
+
+            buttonRestar.setOnClickListener {
+                val value = text1.text.toString().toInt()
+                text1.text = (value - 1).toString()
+            }
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        //esto es para probar el git
+        outState.putString(TEXT_VIEW, binding.text1.text.toString())
     }
 }
