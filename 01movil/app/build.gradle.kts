@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -33,9 +35,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    //esto lo metemos para crear una clase que enlace con el XML activity_main de la vista
+    //esto lo metemos para crear una clase que enlace con el XML
+    // //activity_main de la vista
     buildFeatures {
         viewBinding = true
+        // Se crea una clase buildConfig que se usa en SumarApp
+        buildConfig = true
     }
 }
 
@@ -46,10 +51,17 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    //implementation(bundles.viewmodel)
+    //para el MVVM
+    implementation(libs.bundles.viewmodel)
+
+    //Junit
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.hilt.android)
+    // Hilt
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
+    //Timber (para logs)
+    implementation(libs.timber)
 
 }

@@ -2,4 +2,7 @@
     <string name="app_name">01movil</string>
     <string name="sumar">Sumar</string>
     <string name="restar">Restar</string>
+    <string name="numero_inicio">0</string>
+    <string name="incluye_incremento">Incluye tu incremento</string>
+    <string name="error">Error aleatorio</string>
 </resources>

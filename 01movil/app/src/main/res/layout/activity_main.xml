@@ -21,21 +21,19 @@
         android:id="@+id/buttonSumar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sumar"
-        app:layout_constraintTop_toBottomOf="@id/text1"
-        app:layout_constraintEnd_toStartOf="@id/guidelineDelMedio"
         android:layout_margin="15dp"
-        />
+        android:text="@string/sumar"
+        app:layout_constraintEnd_toStartOf="@id/guidelineDelMedio"
+        app:layout_constraintTop_toBottomOf="@id/text1" />
 
     <Button
         android:id="@+id/buttonRestar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/restar"
-        app:layout_constraintTop_toBottomOf="@id/text1"
-        app:layout_constraintStart_toStartOf="@id/guidelineDelMedio"
         android:layout_margin="15dp"
-        />
+        android:text="@string/restar"
+        app:layout_constraintStart_toStartOf="@id/guidelineDelMedio"
+        app:layout_constraintTop_toBottomOf="@id/text1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineDelMedio"
@@ -43,5 +41,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <EditText
+        android:id="@+id/textIncremento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        android:padding="2sp"
+        android:hint="@string/incluye_incremento"
+        app:layout_constraintBottom_toTopOf="@+id/text1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
