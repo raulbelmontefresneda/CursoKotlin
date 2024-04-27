@@ -1,4 +1,4 @@
-package dam.movil.project1
+package dam.movil.project1.ui.main
 
 import androidx.lifecycle.ViewModel
 //YA LA HE BORRADO import androidx.lifecycle.ViewModelProvider
@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import kotlin.random.Random
-import dam.movil.project1.R
-import dam.movil.project1.StringProvider
+import dam.movil.project1.common.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dam.movil.project1.R
 import javax.inject.Inject
 
 //el MainViewModel muere con la destrucción de

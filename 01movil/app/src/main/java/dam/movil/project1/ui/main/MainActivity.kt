@@ -1,4 +1,4 @@
-package dam.movil.project1
+package dam.movil.project1.ui.main
 
 
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import dam.movil.project1.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -75,12 +76,14 @@ class MainActivity : AppCompatActivity() {
 
                 //hay que llamar al los métodos espejos del ViewModel
                 //viewModel.sumar()
-                viewModel.handleEvent(MainEvent.Sumar(1))
+                val incremento = textIncremento.text.toString().toIntOrNull()?:0
+                viewModel.handleEvent(MainEvent.Sumar(incremento))
 
             }
 
             buttonRestar.setOnClickListener {
-                viewModel.handleEvent(MainEvent.Restar(1))
+                val incremento = textIncremento.text.toString().toIntOrNull()?:0
+                viewModel.handleEvent(MainEvent.Restar(incremento))
             }
         }
 
@@ -95,6 +98,20 @@ class MainActivity : AppCompatActivity() {
         e hilo se destruye... asñi al girar la pantalla el hilo que repinta
         deja de ejecutarse. Se destruye.
          */
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { mainState ->
+                    binding.text1.text = mainState.contador.toString()
+                    mainState.error?.let {
+                        Timber.d("error mostrado")
+                        Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()
+                        viewModel.handleEvent(MainEvent.ErrorMostrado)
+                    }
+
+                }
+            }
+        }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 withContext(Dispatchers.Main.immediate ) {

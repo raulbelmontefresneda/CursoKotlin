@@ -1,4 +1,4 @@
-package dam.movil.project1
+package dam.movil.project1.common
 
 import android.content.Context
 import androidx.annotation.StringRes
